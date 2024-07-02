@@ -6,16 +6,18 @@ import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-dotenv.config();
+require("dotenv").config();
 
-mongoose
-  .connect(process.env.MONGO)
-  .then(() => {
-    console.log('Connected to MongoDB!');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+
+
+const uri = process.env.MONGO;
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Database connected successfully'))
+.catch(err => console.error('Database connection error:', err));
+
 
   const __dirname = path.resolve();
 
