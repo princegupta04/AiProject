@@ -1,67 +1,77 @@
-# Estate Listing Platform
+# AiProject - Real Estate Listing Application
 
-A modern real estate listing application built with React and Supabase.
+A modern real estate listing application built with React, Supabase, and Tailwind CSS.
 
 ## Features
 
-- User Authentication (Sign up, Login)
-- Property Listing Management
-- Advanced Search and Filtering
-- Modern UI with Tailwind CSS
-- Real-time Updates
-- Image Upload
-- Responsive Design
+- User authentication (Sign up, Login, Logout)
+- Create, read, update, and delete property listings
+- Image upload and management
+- Property search and filtering
+- Responsive design
+- Real-time updates
 
 ## Tech Stack
 
-- **Frontend**: React, Vite, Tailwind CSS
-- **Backend**: Supabase
-  - Authentication
-  - Database
-  - Storage
-  - Real-time Subscriptions
+- React
+- Vite
+- Supabase (Authentication, Database, Storage)
+- Tailwind CSS
+- React Router
+- React Hot Toast
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
-- npm (v8 or higher)
+- Node.js (v14 or higher)
+- npm or yarn
 - Supabase account
 
-## Setup Instructions
+## Setup
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file in the root directory with your Supabase credentials
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/AiProject.git
+cd AiProject
 ```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Create a `.env` file in the root directory and add your Supabase credentials:
+```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
 ## Project Structure
 
 ```
-estate-listing/
-├── src/             # React frontend source
-├── public/          # Static assets
-└── package.json     # Project configuration
+src/
+├── components/     # Reusable components
+├── pages/         # Page components
+├── utils/         # Utility functions
+└── App.jsx        # Main application component
 ```
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request 
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
