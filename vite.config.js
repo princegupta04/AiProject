@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import fs from 'fs'
+
+// Check if SSL certificates exist
+const useHttps = fs.existsSync('./localhost-key.pem') && fs.existsSync('./localhost.pem')
 
 export default defineConfig({
   plugins: [react()],
@@ -14,5 +18,16 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
     },
+  },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    ...(useHttps ? {
+      https: {
+        key: fs.readFileSync('./localhost-key.pem'),
+        cert: fs.readFileSync('./localhost.pem'),
+      }
+    } : {})
   },
 }) 

@@ -1,0 +1,7 @@
+{
+  "importMap": {
+    "imports": {
+      "stripe": "https://esm.sh/stripe@12.1.1?target=deno"
+    }
+  }
+} 

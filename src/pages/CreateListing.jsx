@@ -85,14 +85,11 @@ const CreateListing = () => {
     setLoading(true)
 
     try {
-      console.log('Starting listing creation process...')
-      console.log('User ID:', user.id)
-      console.log('Form data:', formData)
-
+      
       // Upload image first
       let imageUrl = ''
       if (formData.image) {
-        console.log('Uploading image...')
+       
         const fileExt = formData.image.name.split('.').pop()
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
         

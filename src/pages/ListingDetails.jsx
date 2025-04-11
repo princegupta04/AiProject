@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '@utils/supabase'
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
+import { ListingDetailsSkeleton } from '@components/Skeleton'
+import PaymentWrapper from '@components/PaymentForm'
 
 const ListingDetails = () => {
   const { id } = useParams()
@@ -9,6 +12,7 @@ const ListingDetails = () => {
   const [listing, setListing] = useState(null)
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
+  const [imageLoading, setImageLoading] = useState(true)
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -20,6 +24,7 @@ const ListingDetails = () => {
           .single()
 
         if (error) throw error
+        console.log('Listing data:', data)
         setListing(data)
       } catch (error) {
         console.error('Error fetching listing:', error)
@@ -31,6 +36,7 @@ const ListingDetails = () => {
 
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
+      console.log('Current user:', user)
       setUser(user)
     }
 
@@ -51,11 +57,9 @@ const ListingDetails = () => {
 
         if (storageError) {
           console.error('Error deleting image:', storageError)
-          // Continue with listing deletion even if image deletion fails
         }
       }
 
-      // Delete the listing
       const { error } = await supabase
         .from('listings')
         .delete()
@@ -72,16 +76,16 @@ const ListingDetails = () => {
   }
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
-      </div>
-    )
+    return <ListingDetailsSkeleton />
   }
 
   if (!listing) {
     return (
-      <div className="text-center py-8">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="text-center py-8"
+      >
         <h1 className="text-2xl font-bold text-gray-900">Listing not found</h1>
         <button
           onClick={() => navigate('/listings')}
@@ -89,59 +93,106 @@ const ListingDetails = () => {
         >
           Back to Listings
         </button>
-      </div>
+      </motion.div>
     )
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="max-w-4xl mx-auto"
+    >
       <div className="card">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <img
-              src={listing.image_url}
-              alt={listing.title}
-              className="w-full h-96 object-cover rounded-lg"
-            />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="relative">
+              {imageLoading && (
+                <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg" />
+              )}
+              <img
+                src={listing.image_url}
+                alt={listing.title}
+                className={`w-full h-96 object-cover rounded-lg transition-opacity duration-300 ${
+                  imageLoading ? 'opacity-0' : 'opacity-100'
+                }`}
+                onLoad={() => setImageLoading(false)}
+                onError={(e) => {
+                  e.target.onerror = null
+                  e.target.src = '/placeholder-image.jpg'
+                }}
+              />
+            </div>
+          </motion.div>
 
-          <div>
-            <h1 className="text-3xl font-bold mb-2">{listing.title}</h1>
-            <p className="text-gray-600 mb-4">{listing.location}</p>
-            <p className="text-2xl font-bold text-primary-600 mb-6">
-              ${listing.price.toLocaleString()}
-            </p>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="space-y-6"
+          >
+            <div>
+              <h1 className="text-3xl font-bold mb-2">{listing.title}</h1>
+              <p className="text-gray-600 mb-4">{listing.location}</p>
+              <p className="text-2xl font-bold text-primary-600 mb-6">
+                ${listing.price.toLocaleString()}
+              </p>
+            </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="grid grid-cols-3 gap-4 mb-6"
+            >
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">Bedrooms</p>
                 <p className="text-lg font-semibold">{listing.bedrooms}</p>
               </div>
-              <div className="text-center">
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">Bathrooms</p>
                 <p className="text-lg font-semibold">{listing.bathrooms}</p>
               </div>
-              <div className="text-center">
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">Area</p>
                 <p className="text-lg font-semibold">{listing.area} sq ft</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="mb-6"
+            >
               <h2 className="text-xl font-semibold mb-2">Description</h2>
               <p className="text-gray-700">{listing.description}</p>
-            </div>
+            </motion.div>
 
-            <div className="mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="mb-6"
+            >
               <h2 className="text-xl font-semibold mb-2">Property Type</h2>
               <p className="text-gray-700 capitalize">{listing.type}</p>
-            </div>
+            </motion.div>
 
-            {user && user.id === listing.user_id && (
-              <div className="flex space-x-4">
+            {user && user.id === listing.user_id ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                className="flex space-x-4"
+              >
                 <button
                   onClick={() => navigate(`/listings/${id}/edit`)}
-                  className="btn btn-primary"
+                  className="btn btn-primary flex-1"
                 >
                   Edit Listing
                 </button>
@@ -151,12 +202,39 @@ const ListingDetails = () => {
                 >
                   Delete Listing
                 </button>
-              </div>
+              </motion.div>
+            ) : user ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+              >
+                <PaymentWrapper 
+                  listing={listing} 
+                  onSuccess={() => {
+                    toast.success('Payment successful! The listing will be marked as sold.');
+                    navigate('/listings');
+                  }} 
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+              >
+                <button
+                  onClick={() => navigate('/login')}
+                  className="btn btn-primary w-full"
+                >
+                  Login to Purchase
+                </button>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
