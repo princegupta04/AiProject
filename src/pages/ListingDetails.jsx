@@ -24,7 +24,7 @@ const ListingDetails = () => {
           .single()
 
         if (error) throw error
-        console.log('Listing data:', data)
+        console.log('Fetched listing:', data)
         setListing(data)
       } catch (error) {
         console.error('Error fetching listing:', error)
@@ -35,9 +35,15 @@ const ListingDetails = () => {
     }
 
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      console.log('Current user:', user)
-      setUser(user)
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser()
+        if (error) throw error
+        console.log('Current user:', user)
+        setUser(user)
+      } catch (error) {
+        console.error('Error getting user:', error)
+        setUser(null)
+      }
     }
 
     fetchListing()
@@ -183,40 +189,42 @@ const ListingDetails = () => {
               <p className="text-gray-700 capitalize">{listing.type}</p>
             </motion.div>
 
-            {user && user.id === listing.user_id ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
-                className="flex space-x-4"
-              >
-                <button
-                  onClick={() => navigate(`/listings/${id}/edit`)}
-                  className="btn btn-primary flex-1"
+            {user ? (
+              user.id === listing?.user_id ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 }}
+                  className="flex space-x-4"
                 >
-                  Edit Listing
-                </button>
-                <button
-                  onClick={handleDelete}
-                  className="btn btn-secondary"
+                  <button
+                    onClick={() => navigate(`/listings/${id}/edit`)}
+                    className="btn btn-primary flex-1"
+                  >
+                    Edit Listing
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="btn btn-secondary"
+                  >
+                    Delete Listing
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 }}
                 >
-                  Delete Listing
-                </button>
-              </motion.div>
-            ) : user ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
-              >
-                <PaymentWrapper 
-                  listing={listing} 
-                  onSuccess={() => {
-                    toast.success('Payment successful! The listing will be marked as sold.');
-                    navigate('/listings');
-                  }} 
-                />
-              </motion.div>
+                  <PaymentWrapper 
+                    listing={listing} 
+                    onSuccess={() => {
+                      toast.success('Payment successful! The listing will be marked as sold.');
+                      navigate('/listings');
+                    }} 
+                  />
+                </motion.div>
+              )
             ) : (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
