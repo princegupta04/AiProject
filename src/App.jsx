@@ -13,6 +13,11 @@ import ListingDetails from '@pages/ListingDetails'
 import Blog from '@pages/Blog'
 import Contact from '@pages/Contact'
 import PrivateRoute from '@components/PrivateRoute'
+import AdminRoute from '@components/AdminRoute'
+import AdminDashboard from '@pages/admin/Dashboard'
+import AdminUsers from '@pages/admin/Users'
+import AdminListings from '@pages/admin/Listings'
+import AdminContacts from '@pages/admin/Contacts'
 
 function App() {
   return (
@@ -66,6 +71,19 @@ function App() {
               </PrivateRoute>
             }
           />
+          {/* Admin Routes */}
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          >
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="listings" element={<AdminListings />} />
+            <Route path="contacts" element={<AdminContacts />} />
+          </Route>
         </Routes>
       </main>
       <Footer />
