@@ -71,12 +71,12 @@ const Navbar = () => {
                 <span className="text-blue-300">Welcome, {user.email}</span>
               ) : (
                 <>
-                  <Link to="/login" className="text-blue-300 hover:text-white transition-colors">
+                  {/* <Link to="/login" className="text-blue-300 hover:text-white transition-colors">
                     Sign In
                   </Link>
                   <Link to="/register" className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition-colors">
                     Register
-                  </Link>
+                  </Link> */}
                 </>
               )}
             </div>
