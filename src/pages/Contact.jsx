@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaUser, FaComments, FaCheckCircle } from 'react-icons/fa';
-import { supabase } from '@utils/supabase';
 import toast from 'react-hot-toast';
+import { sendContactEmail } from '../utils/supabase';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,14 +26,9 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }
-      });
-
+      const {data, error} = await sendContactEmail(formData);
+      console.log(data);
+      console.log(error);
       if (error) {
         throw new Error(error.message || 'Failed to send message');
       }

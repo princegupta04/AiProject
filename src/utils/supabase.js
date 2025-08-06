@@ -89,3 +89,10 @@ export const getImageUrl = (path) => {
     .getPublicUrl(path)
   return data.publicUrl
 } 
+
+export const sendContactEmail = async (formData) => {
+  const { data, error } = await supabase.functions.invoke('submit-contact-form', {
+    body: formData,
+  })
+  return { data, error }
+} 

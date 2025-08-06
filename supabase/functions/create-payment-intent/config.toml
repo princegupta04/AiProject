@@ -1,2 +1,0 @@
-[functions.create-payment-intent]
-verify_jwt = true 
