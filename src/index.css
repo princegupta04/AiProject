@@ -1,31 +1,134 @@
+/* Import theme CSS variables */
+@import './styles/theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply font-sans;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  * {
+    @apply border-gray-200;
+  }
+  
+  [data-theme="dark"] * {
+    @apply border-gray-700;
+  }
+  
+  [data-theme="modern"] * {
+    @apply border-gray-200;
   }
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors;
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
+    color: var(--text-inverse);
   }
   
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700;
+    background-color: var(--brand-primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--brand-primary-hover);
+    transform: translateY(-1px);
   }
   
   .btn-secondary {
-    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+    background-color: var(--brand-secondary);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--brand-secondary-hover);
+    transform: translateY(-1px);
+  }
+  
+  .btn-accent {
+    background-color: var(--brand-accent);
+  }
+  
+  .btn-accent:hover {
+    background-color: var(--brand-accent-hover);
+    transform: translateY(-1px);
   }
   
   .input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    @apply w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 transition-all duration-300;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+  }
+  
+  .input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-sm p-6;
+    @apply rounded-xl p-6 transition-all duration-300;
+    background-color: var(--bg-card);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+  }
+  
+  /* Navigation specific styles */
+  .nav-link {
+    @apply font-medium transition-all duration-300;
+    color: var(--text-secondary);
+  }
+  
+  .nav-link:hover {
+    color: var(--brand-primary);
+  }
+  
+  .nav-link.active {
+    color: var(--brand-primary);
+  }
+  
+  /* Form specific styles */
+  .form-group {
+    @apply mb-6;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium mb-2;
+    color: var(--text-secondary);
+  }
+  
+  .form-error {
+    @apply text-sm mt-1;
+    color: var(--error);
+  }
+  
+  /* Status styles */
+  .status-success {
+    color: var(--success);
+    background-color: var(--success-light);
+  }
+  
+  .status-warning {
+    color: var(--warning);
+    background-color: var(--warning-light);
+  }
+  
+  .status-error {
+    color: var(--error);
+    background-color: var(--error-light);
+  }
+  
+  .status-info {
+    color: var(--info);
+    background-color: var(--info-light);
   }
 } 

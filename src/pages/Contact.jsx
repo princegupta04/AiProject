@@ -44,15 +44,15 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen theme-bg-secondary theme-transition">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+      <section className="theme-bg-footer text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-4xl md:text-6xl font-bold mb-6 theme-text-inverse"
           >
             Get In Touch
           </motion.h1>
@@ -60,7 +60,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl opacity-90"
+            className="text-xl md:text-2xl theme-text-muted"
           >
             We're here to help you find your dream property
           </motion.p>
@@ -75,42 +75,42 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
+              className="card text-center"
             >
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaPhone className="text-blue-600 text-2xl" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 theme-bg-brand-primary">
+                <FaPhone className="theme-text-inverse text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Phone</h3>
-              <p className="text-gray-600 mb-2">+1 (555) 123-4567</p>
-              <p className="text-gray-600">+1 (555) 987-6543</p>
+              <h3 className="text-xl font-semibold theme-text-primary mb-4">Phone</h3>
+              <p className="theme-text-secondary mb-2">+1 (555) 123-4567</p>
+              <p className="theme-text-secondary">+1 (555) 987-6543</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
+              className="card text-center"
             >
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaEnvelope className="text-green-600 text-2xl" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 theme-bg-brand-secondary">
+                <FaEnvelope className="theme-text-inverse text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Email</h3>
-              <p className="text-gray-600 mb-2">contact@realestate.com</p>
-              <p className="text-gray-600">info@realestate.com</p>
+              <h3 className="text-xl font-semibold theme-text-primary mb-4">Email</h3>
+              <p className="theme-text-secondary mb-2">contact@realestate.com</p>
+              <p className="theme-text-secondary">info@realestate.com</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
+              className="card text-center"
             >
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaMapMarkerAlt className="text-purple-600 text-2xl" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 theme-bg-brand-accent">
+                <FaMapMarkerAlt className="theme-text-inverse text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Office</h3>
-              <p className="text-gray-600 mb-2">123 Real Estate Street</p>
-              <p className="text-gray-600">Suite 100, New York, NY 10001</p>
+              <h3 className="text-xl font-semibold theme-text-primary mb-4">Office</h3>
+              <p className="theme-text-secondary mb-2">123 Real Estate Street</p>
+              <p className="theme-text-secondary">Suite 100, New York, NY 10001</p>
             </motion.div>
           </div>
 
@@ -120,13 +120,13 @@ const Contact = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="bg-white p-8 rounded-lg shadow-lg"
+              className="card"
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+              <h2 className="text-3xl font-bold theme-text-primary mb-6">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="form-label">
                       <FaUser className="inline mr-2" />
                       Full Name
                     </label>
@@ -137,13 +137,13 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="input"
                       placeholder="Enter your full name"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="form-label">
                       <FaEnvelope className="inline mr-2" />
                       Email Address
                     </label>
@@ -154,14 +154,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="input"
                       placeholder="Enter your email"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="phone" className="form-label">
                     <FaPhone className="inline mr-2" />
                     Phone Number
                   </label>
@@ -171,13 +171,13 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="input"
                     placeholder="Enter your phone number"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="subject" className="form-label">
                     <FaComments className="inline mr-2" />
                     Subject
                   </label>
@@ -188,13 +188,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="input"
                     placeholder="What is this about?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="form-label">
                     <FaComments className="inline mr-2" />
                     Message
                   </label>
@@ -205,7 +205,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="input resize-none"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -213,7 +213,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
+                  className="w-full btn btn-primary py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending Message...' : 'Send Message'}
                 </button>
@@ -228,69 +228,69 @@ const Contact = () => {
               className="space-y-8"
             >
               {/* Business Hours */}
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <FaClock className="mr-3 text-blue-600" />
+              <div className="card">
+                <h3 className="text-2xl font-semibold theme-text-primary mb-6 flex items-center">
+                  <FaClock className="mr-3 theme-brand-primary" />
                   Business Hours
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium">Monday - Friday</span>
-                    <span className="text-gray-600">9:00 AM - 6:00 PM</span>
+                  <div className="flex justify-between items-center py-2 border-b theme-border-primary">
+                    <span className="font-medium theme-text-primary">Monday - Friday</span>
+                    <span className="theme-text-secondary">9:00 AM - 6:00 PM</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium">Saturday</span>
-                    <span className="text-gray-600">10:00 AM - 4:00 PM</span>
+                  <div className="flex justify-between items-center py-2 border-b theme-border-primary">
+                    <span className="font-medium theme-text-primary">Saturday</span>
+                    <span className="theme-text-secondary">10:00 AM - 4:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="font-medium">Sunday</span>
-                    <span className="text-gray-600">Closed</span>
+                    <span className="font-medium theme-text-primary">Sunday</span>
+                    <span className="theme-text-secondary">Closed</span>
                   </div>
                 </div>
               </div>
 
               {/* Why Choose Us */}
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Why Choose Us?</h3>
+              <div className="card">
+                <h3 className="text-2xl font-semibold theme-text-primary mb-6">Why Choose Us?</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <FaCheckCircle className="text-green-500 mt-1" />
+                    <FaCheckCircle className="theme-brand-secondary mt-1" />
                     <div>
-                      <h4 className="font-medium text-gray-900">Expert Guidance</h4>
-                      <p className="text-gray-600 text-sm">Professional real estate experts to guide you through every step</p>
+                      <h4 className="font-medium theme-text-primary">Expert Guidance</h4>
+                      <p className="theme-text-secondary text-sm">Professional real estate experts to guide you through every step</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <FaCheckCircle className="text-green-500 mt-1" />
+                    <FaCheckCircle className="theme-brand-secondary mt-1" />
                     <div>
-                      <h4 className="font-medium text-gray-900">24/7 Support</h4>
-                      <p className="text-gray-600 text-sm">Round-the-clock customer support for all your needs</p>
+                      <h4 className="font-medium theme-text-primary">24/7 Support</h4>
+                      <p className="theme-text-secondary text-sm">Round-the-clock customer support for all your needs</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <FaCheckCircle className="text-green-500 mt-1" />
+                    <FaCheckCircle className="theme-brand-secondary mt-1" />
                     <div>
-                      <h4 className="font-medium text-gray-900">Best Deals</h4>
-                      <p className="text-gray-600 text-sm">Access to exclusive properties and competitive pricing</p>
+                      <h4 className="font-medium theme-text-primary">Best Deals</h4>
+                      <p className="theme-text-secondary text-sm">Access to exclusive properties and competitive pricing</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <FaCheckCircle className="text-green-500 mt-1" />
+                    <FaCheckCircle className="theme-brand-secondary mt-1" />
                     <div>
-                      <h4 className="font-medium text-gray-900">Trusted Service</h4>
-                      <p className="text-gray-600 text-sm">Over 100+ satisfied families served successfully</p>
+                      <h4 className="font-medium theme-text-primary">Trusted Service</h4>
+                      <p className="theme-text-secondary text-sm">Over 100+ satisfied families served successfully</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Map Placeholder */}
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Our Location</h3>
-                <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+              <div className="card">
+                <h3 className="text-2xl font-semibold theme-text-primary mb-6">Our Location</h3>
+                <div className="theme-bg-tertiary h-64 rounded-lg flex items-center justify-center">
                   <div className="text-center">
-                    <FaMapMarkerAlt className="text-gray-400 text-4xl mx-auto mb-4" />
-                    <p className="text-gray-600">Interactive Map Coming Soon</p>
+                    <FaMapMarkerAlt className="theme-text-muted text-4xl mx-auto mb-4" />
+                    <p className="theme-text-secondary">Interactive Map Coming Soon</p>
                   </div>
                 </div>
               </div>

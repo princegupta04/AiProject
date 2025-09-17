@@ -1,0 +1,163 @@
+/* Theme CSS Variables for consistent theming across the app */
+
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-navbar: #ffffff;
+  --bg-footer: #1e293b;
+  
+  /* Text Colors */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+  --text-inverse: #ffffff;
+  
+  /* Brand Colors */
+  --brand-primary: #3b82f6;
+  --brand-primary-hover: #2563eb;
+  --brand-secondary: #10b981;
+  --brand-secondary-hover: #059669;
+  --brand-accent: #8b5cf6;
+  --brand-accent-hover: #7c3aed;
+  
+  /* Border Colors */
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  --border-focus: #3b82f6;
+  
+  /* Shadow Colors */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Status Colors */
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --error: #ef4444;
+  --error-light: #fee2e2;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+  --bg-navbar: #0f172a;
+  --bg-footer: #020617;
+  
+  /* Text Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #1e293b;
+  
+  /* Brand Colors (slightly adjusted for dark theme) */
+  --brand-primary: #60a5fa;
+  --brand-primary-hover: #3b82f6;
+  --brand-secondary: #34d399;
+  --brand-secondary-hover: #10b981;
+  --brand-accent: #a78bfa;
+  --brand-accent-hover: #8b5cf6;
+  
+  /* Border Colors */
+  --border-primary: #334155;
+  --border-secondary: #475569;
+  --border-focus: #60a5fa;
+  
+  /* Shadow Colors (adjusted for dark theme) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+/* Modern Theme Colors - A vibrant alternative */
+[data-theme="modern"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #e4e4e7;
+  --bg-card: #ffffff;
+  --bg-navbar: #ffffff;
+  --bg-footer: #18181b;
+  
+  /* Text Colors */
+  --text-primary: #18181b;
+  --text-secondary: #3f3f46;
+  --text-tertiary: #71717a;
+  --text-muted: #a1a1aa;
+  --text-inverse: #fafafa;
+  
+  /* Brand Colors - Modern purple/pink gradient theme */
+  --brand-primary: #8b5cf6;
+  --brand-primary-hover: #7c3aed;
+  --brand-secondary: #ec4899;
+  --brand-secondary-hover: #db2777;
+  --brand-accent: #06b6d4;
+  --brand-accent-hover: #0891b2;
+  
+  /* Border Colors */
+  --border-primary: #e4e4e7;
+  --border-secondary: #d4d4d8;
+  --border-focus: #8b5cf6;
+  
+  /* Shadow Colors */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Utility classes using CSS variables */
+.theme-bg-primary { background-color: var(--bg-primary); }
+.theme-bg-secondary { background-color: var(--bg-secondary); }
+.theme-bg-tertiary { background-color: var(--bg-tertiary); }
+.theme-bg-card { background-color: var(--bg-card); }
+.theme-bg-navbar { background-color: var(--bg-navbar); }
+.theme-bg-footer { background-color: var(--bg-footer); }
+
+.theme-text-primary { color: var(--text-primary); }
+.theme-text-secondary { color: var(--text-secondary); }
+.theme-text-tertiary { color: var(--text-tertiary); }
+.theme-text-muted { color: var(--text-muted); }
+.theme-text-inverse { color: var(--text-inverse); }
+
+.theme-brand-primary { color: var(--brand-primary); }
+.theme-bg-brand-primary { background-color: var(--brand-primary); }
+.theme-brand-secondary { color: var(--brand-secondary); }
+.theme-bg-brand-secondary { background-color: var(--brand-secondary); }
+.theme-brand-accent { color: var(--brand-accent); }
+.theme-bg-brand-accent { background-color: var(--brand-accent); }
+
+.theme-border-primary { border-color: var(--border-primary); }
+.theme-border-secondary { border-color: var(--border-secondary); }
+.theme-border-focus { border-color: var(--border-focus); }
+
+.theme-shadow-sm { box-shadow: var(--shadow-sm); }
+.theme-shadow-md { box-shadow: var(--shadow-md); }
+.theme-shadow-lg { box-shadow: var(--shadow-lg); }
+.theme-shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* Transition utilities for smooth theme switching */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effects using CSS variables */
+.theme-hover-primary:hover { color: var(--brand-primary-hover); }
+.theme-hover-secondary:hover { color: var(--brand-secondary-hover); }
+.theme-hover-accent:hover { color: var(--brand-accent-hover); }
+
+.theme-bg-hover-primary:hover { background-color: var(--brand-primary-hover); }
+.theme-bg-hover-secondary:hover { background-color: var(--brand-secondary-hover); }
+.theme-bg-hover-accent:hover { background-color: var(--brand-accent-hover); }
