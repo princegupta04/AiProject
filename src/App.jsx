@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import ThemeProvider from '@contexts/ThemeContext'
 import Navbar from '@components/Navbar'
 import Footer from '@components/Footer'
 import Home from '@pages/Home'
@@ -21,74 +22,76 @@ import AdminContacts from '@pages/admin/Contacts'
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1 pt-24">
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<Home />} />
-          <Route
-            path="/listings"
-            element={
-              <PrivateRoute>
-                <Listings />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/listings/:id"
-            element={
-              <PrivateRoute>
-                <ListingDetails />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/create-listing"
-            element={
-              <PrivateRoute>
-                <CreateListing />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/listings/:id/edit"
-            element={
-              <PrivateRoute>
-                <EditListing />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
-          {/* Admin Routes */}
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          >
-            <Route path="users" element={<AdminUsers />} />
-            <Route path="listings" element={<AdminListings />} />
-            <Route path="contacts" element={<AdminContacts />} />
-          </Route>
-        </Routes>
-      </main>
-      <Footer />
-      <Toaster position="top-right" />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen flex flex-col theme-bg-secondary theme-transition">
+        <Navbar />
+        <main className="flex-1 pt-24">
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Home />} />
+            <Route
+              path="/listings"
+              element={
+                <PrivateRoute>
+                  <Listings />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/listings/:id"
+              element={
+                <PrivateRoute>
+                  <ListingDetails />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/create-listing"
+              element={
+                <PrivateRoute>
+                  <CreateListing />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/listings/:id/edit"
+              element={
+                <PrivateRoute>
+                  <EditListing />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
+            {/* Admin Routes */}
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
+            >
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="listings" element={<AdminListings />} />
+              <Route path="contacts" element={<AdminContacts />} />
+            </Route>
+          </Routes>
+        </main>
+        <Footer />
+        <Toaster position="top-right" />
+      </div>
+    </ThemeProvider>
   )
 }
 
